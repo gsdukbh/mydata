@@ -8,10 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="poetiy" />
+        <module name="poetry" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="poetiy" target="1.8" />
+      <module name="poetry" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
