@@ -1,4 +1,4 @@
-package top.werlst.poetry;
+package top.werls.data.algortihm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author lee
  */
 @SpringBootApplication
-public class PoetryApplication {
+public class AlgortihmApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PoetryApplication.class, args);
+        SpringApplication.run(AlgortihmApplication.class, args);
     }
 
 }
