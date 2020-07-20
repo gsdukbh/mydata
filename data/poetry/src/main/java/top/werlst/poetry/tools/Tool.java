@@ -1,18 +1,48 @@
 package top.werlst.poetry.tools;
 
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
+import top.werlst.poetry.aop.AopLog;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
+import java.util.Random;
+import java.util.concurrent.Future;
 
 /**
  * @author : Lee JiaWei
  * @version V1.0
  * @Project: data
- * @date Date : 2020/7/17 15:15
+ * @date Date : 2020/7/17 17:55
  */
 @Component
-public class GetIpAdd {
+public class Tool {
+
+    @Async
+    public void test()  {
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(i);
+        }
+    }
+
+    @Async
+    public Future<String> taskTwo() throws InterruptedException {
+        long start = System.currentTimeMillis();
+        Thread.sleep(1001);
+        long end = System.currentTimeMillis();
+        System.out.println(end-start+"ms");
+
+        return new AsyncResult<>("任务二OK");
+
+    }
+
+
     public String getIpAddr(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
         if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {

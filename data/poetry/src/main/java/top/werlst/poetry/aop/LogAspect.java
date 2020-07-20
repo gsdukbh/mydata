@@ -11,7 +11,7 @@ import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import top.werlst.poetry.tools.GetIpAdd;
+import top.werlst.poetry.tools.Tool;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
@@ -28,7 +28,7 @@ import java.util.Objects;
 @Component
 public class LogAspect {
     @Autowired
-    GetIpAdd getIpAdd;
+    Tool tool;
 
     @Pointcut(value = "@annotation(top.werlst.poetry.aop.AopLog)")
     public void log() {
@@ -36,8 +36,7 @@ public class LogAspect {
 
     @Before("log()")
     public void before() {
-        System.out.println();
-        System.out.println("之前");
+//        System.out.println("之前");
     }
 
     @Around("log()")
@@ -53,11 +52,16 @@ public class LogAspect {
         // 执行时长(毫秒)
         long time = System.currentTimeMillis() - beginTime;
         // 保存日志
-        l(point, time);
+        saveLog(point, time);
         return result;
     }
 
-    public void l(ProceedingJoinPoint point, long time) {
+    /**
+     *  保存方法日志
+     * @param point ProceedingJoinPoint 切入点
+     * @param time  long 执行时间
+     */
+    public void saveLog(ProceedingJoinPoint point, long time) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = signature.getMethod();
         AopLog logAnnotation = method.getAnnotation(AopLog.class);
@@ -66,17 +70,18 @@ public class LogAspect {
         String methodName = signature.getName();
         System.out.println(methodName);
         System.out.println(className);
-        System.out.println(time);
+        System.out.println(time+"ms");
         // 请求的方法参数值
         Object[] args = point.getArgs();
         // 请求的方法参数名称
         LocalVariableTableParameterNameDiscoverer u = new LocalVariableTableParameterNameDiscoverer();
         String[] paramNames = u.getParameterNames(method);
         System.out.println(Arrays.toString(paramNames));
-        ;
+
+        System.out.println(Arrays.toString(args));
         // 获取request
         HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
-        System.out.println(getIpAdd.getIpAddr(request));
+        System.out.println(tool.getIpAddr(request));
         // 设置IP地址
     }
 }
