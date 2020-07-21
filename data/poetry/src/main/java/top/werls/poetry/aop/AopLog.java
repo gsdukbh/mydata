@@ -1,4 +1,4 @@
-package top.werlst.poetry.aop;
+package top.werls.poetry.aop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -13,4 +13,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AopLog {
        String value() default "";
+       int type() default 0;
 }

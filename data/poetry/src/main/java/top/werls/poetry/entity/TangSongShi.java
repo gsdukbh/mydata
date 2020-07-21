@@ -1,4 +1,4 @@
-package top.werlst.poetry.entity;
+package top.werls.poetry.entity;
 
 import lombok.Data;
 
@@ -18,7 +18,16 @@ public class TangSongShi implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private  long Tid;
     private String author;
+    private String type;
     private String title;
     @Column(columnDefinition = "text")
     private String paragraphs;
+
+    private String rhythmic;
+    private String notes;
+    private String chapter;
+
+    @Column(columnDefinition = "text")
+    private String content;
+
 }

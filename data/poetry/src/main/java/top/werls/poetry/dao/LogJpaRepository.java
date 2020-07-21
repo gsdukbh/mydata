@@ -1,8 +1,8 @@
-package top.werlst.poetry.dao;
+package top.werls.poetry.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import top.werlst.poetry.entity.Log;
+import top.werls.poetry.entity.Log;
 
 /**
  * @author : Lee JiaWei

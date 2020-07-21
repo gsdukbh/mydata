@@ -16,6 +16,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/")
 public class ChapterOne {
+
     @GetMapping("/gcd/{p}/{q}")
     public Map<String, Object> gcdApi(@PathVariable Integer p, @PathVariable Integer q) {
         long start = System.currentTimeMillis();

@@ -1,9 +1,9 @@
-package top.werlst.poetry.service;
+package top.werls.poetry.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.werlst.poetry.dao.LogJpaRepository;
-import top.werlst.poetry.entity.Log;
+import top.werls.poetry.dao.LogJpaRepository;
+import top.werls.poetry.entity.Log;
 
 /**
  * @author : Lee JiaWei

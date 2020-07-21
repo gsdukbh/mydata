@@ -1,4 +1,4 @@
-package top.werlst.poetry.controller;
+package top.werls.poetry.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
