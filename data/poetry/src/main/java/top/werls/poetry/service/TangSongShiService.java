@@ -36,7 +36,6 @@ public class TangSongShiService {
                 TangSongShi tangSongShi = jsonReader.readObject(TangSongShi.class);
                 tangSongShi.setType(type);
                 songShiList.add(tangSongShi);
-                System.out.println(songShiList);
                 if (songShiList.size() > 3000){
                     this.save(songShiList);
                     songShiList.clear();
