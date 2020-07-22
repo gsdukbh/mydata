@@ -7,6 +7,9 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
@@ -23,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+
 /**
  * @author : Lee JiaWei
  * @version V1.0
@@ -37,6 +41,9 @@ public class LogAspect {
 
     @Autowired
     LogService logService;
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
 
     @Pointcut(value = "@annotation(top.werls.poetry.aop.AopLog)")
     public void log() {
@@ -77,21 +84,21 @@ public class LogAspect {
         Log log=new Log();
 
         log.setValue(logAnnotation.value());
-        System.out.println(logAnnotation.value());
+
+        logger.info("方法注释:"+logAnnotation.value());
         String className = point.getTarget().getClass().getName();
         String methodName = signature.getName();
 
         log.setMethodName(className+"."+methodName);
         log.setSpendTime(time);
-
-        System.out.println(className+"."+methodName);
-        System.out.println(time+"ms");
+        logger.info("执行方法:"+className+"."+methodName);
+        logger.info("执行时间:"+time+"ms");
         Object[] args = point.getArgs();
         LocalVariableTableParameterNameDiscoverer u = new LocalVariableTableParameterNameDiscoverer();
         String[] paramNames = u.getParameterNames(method);
-        System.out.println(Arrays.toString(paramNames));
 
-        System.out.println(Arrays.toString(args));
+
+
         String  temp=Arrays.toString(args);
         temp=temp.replace("[","");
         temp=temp.replace("]","");
@@ -101,11 +108,13 @@ public class LogAspect {
             save.put(paramNames[0],value[i]);
         }
         log.setParamValue(JSON.toJSONString(save));
-        
+
+        logger.info("方法参数值:"+JSON.toJSONString(save));
+
         if (logAnnotation.type()==0){
             HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
-            System.out.println(tool.getIpAddr(request));
 
+            logger.info("访问IP地址:"+tool.getIpAddr(request));
             log.setIp(tool.getIpAddr(request));
         }
 

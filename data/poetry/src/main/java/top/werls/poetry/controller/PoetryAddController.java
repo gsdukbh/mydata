@@ -50,15 +50,19 @@ public class PoetryAddController {
     }
     @AopLog()
     @PostMapping("/add")
-    public Map<String, Object> addPoetry(@RequestParam MultipartFile file, String type) {
+    public Map<String, Object> addPoetry(@RequestParam MultipartFile[] files,@RequestParam String type) {
         Map<String, Object> res = new HashMap<>(5);
         try {
-            tangSongShiService.save(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8),type);
+            for (MultipartFile file:files) {
+                tangSongShiService.save(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8),type);
+                System.out.println(file.getOriginalFilename());
+            }
         } catch (IOException e) {
             res.put("status",403);
             res.put("message",e.getMessage());
             e.printStackTrace();
         }
+
         res.put("status", 200);
         return res;
     }

@@ -1,6 +1,8 @@
 package top.werls.poetry.service;
 
 import com.alibaba.fastjson.JSONReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ import java.util.List;
 public class TangSongShiService {
     @Autowired
     TangSongShiJpaRepository tangSongShiJpaRepository;
-
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     @Async
     @AopLog(type = 1,value = "保存数据")
     public void save(Reader reader,String type){
@@ -34,7 +36,9 @@ public class TangSongShiService {
             jsonReader.startArray();
             while (jsonReader.hasNext()){
                 TangSongShi tangSongShi = jsonReader.readObject(TangSongShi.class);
+                logger.info(tangSongShi.toString());
                 tangSongShi.setType(type);
+
                 songShiList.add(tangSongShi);
                 if (songShiList.size() > 3000){
                     this.save(songShiList);
