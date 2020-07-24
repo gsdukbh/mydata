@@ -54,4 +54,17 @@ public class ResizingArrayStack<T> implements Iterable<T> {
 
         return null;
     }
+
+    private class ListIterator implements  Iterable<T>{
+
+        /**
+         * Returns an iterator over elements of type {@code T}.
+         *
+         * @return an Iterator.
+         */
+        @Override
+        public Iterator<T> iterator() {
+            return null;
+        }
+    }
 }
