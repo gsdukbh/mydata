@@ -19,10 +19,9 @@ public class LogService {
     /**
      * 保存Log 对象
      * @param log log 对象
-     * @return Log 对象
      */
-    public Log save(Log log){
-        return  logJpaRepository.save(log);
+    public void save(Log log) {
+        logJpaRepository.save(log);
     }
 
 }

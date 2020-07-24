@@ -27,20 +27,21 @@ public class TangSongShiService {
     @Autowired
     TangSongShiJpaRepository tangSongShiJpaRepository;
     private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Async
-    @AopLog(type = 1,value = "保存数据")
-    public void save(Reader reader,String type){
-        List<TangSongShi> songShiList=new ArrayList<>();
+    @AopLog(type = 1, value = "保存数据")
+    public void save(Reader reader, String type) {
+        List<TangSongShi> songShiList = new ArrayList<>();
         try {
-            JSONReader jsonReader=new JSONReader(reader);
+            JSONReader jsonReader = new JSONReader(reader);
             jsonReader.startArray();
-            while (jsonReader.hasNext()){
+            while (jsonReader.hasNext()) {
                 TangSongShi tangSongShi = jsonReader.readObject(TangSongShi.class);
                 logger.info(tangSongShi.toString());
                 tangSongShi.setType(type);
 
                 songShiList.add(tangSongShi);
-                if (songShiList.size() > 3000){
+                if (songShiList.size() > 3000) {
                     this.save(songShiList);
                     songShiList.clear();
                 }
@@ -49,16 +50,17 @@ public class TangSongShiService {
             jsonReader.endArray();
             jsonReader.close();
             reader.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
-    public void save(TangSongShi tangSongShi){
+    public void save(TangSongShi tangSongShi) {
         tangSongShiJpaRepository.save(tangSongShi);
     }
-    public void save(List<TangSongShi> tangSongShi){
+
+    public void save(List<TangSongShi> tangSongShi) {
         tangSongShiJpaRepository.saveAll(tangSongShi);
     }
 }

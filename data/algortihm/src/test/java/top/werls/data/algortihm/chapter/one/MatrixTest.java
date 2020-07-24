@@ -1,10 +1,12 @@
 package top.werls.data.algortihm.chapter.one;
 
+import edu.princeton.cs.algs4.Graph;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
 
+import java.awt.*;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,25 +19,24 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 @SpringBootTest
-
 class MatrixTest {
 
     @Test
     void dot() {
-        double[] x={1,3,-5} ,y={4,-2,-1};
-        System.out.println(Matrix.dot(x,y));
+        double[] x = {1, 3, -5}, y = {4, -2, -1};
+        System.out.println(Matrix.dot(x, y));
+
     }
 
     @Test
     void mult() {
-        double[][] a={
-                {1,0,2},
-                {-1,3,1}
-        },b={
-                {3,1},
-                {2,1},
-                {1,0}
-        } ;
+        double[][] a = {
+                {3, 5},
+                {1, 2}
+        }, b = {
+                {4},
+                {1}
+        };
         for (double[] in :
                 Matrix.mult(a, b)) {
             System.out.println(Arrays.toString(in));
@@ -44,9 +45,9 @@ class MatrixTest {
 
     @Test
     void transpose() {
-        double[][] a={
-                {1,0,2},
-                {-1,3,1}
+        double[][] a = {
+                {1, 0, 2},
+                {-1, 3, 1}
         };
         for (double[] in :
                 Matrix.transpose(a)) {
@@ -56,15 +57,22 @@ class MatrixTest {
 
     @Test
     void testMult() {
-        double[][] a={
-                {1,2},
-                {3,4}
+        double[][] a = {
+                {3, 5},
+                {1, 2}
         };
-        double[] x={1,2};
-        System.out.println(Arrays.toString(Matrix.mult(a,x)));
+        double[] x = {4, 1};
+        System.out.println(Arrays.toString(Matrix.mult(a, x)));
     }
 
     @Test
     void testMult1() {
+        double[][] a = {
+                {3, 3, 1},
+                {4, 7, 15},
+                {0, 9, 15}
+        };
+        double[] y = {5, 7, 20};
+        System.out.println(Arrays.toString(Matrix.mult(y, a)));
     }
 }

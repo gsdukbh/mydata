@@ -9,9 +9,6 @@ import java.util.List;
  * @date: 2020/7/13 9:54
  */
 public class Text {
-    public static void main(String[] args) {
-        System.out.println(args[0]);
-    }
 
     public static int gcd(Integer p, Integer q) {
         if (q == 0) {

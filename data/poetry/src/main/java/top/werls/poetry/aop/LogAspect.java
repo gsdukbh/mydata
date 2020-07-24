@@ -72,7 +72,8 @@ public class LogAspect {
     }
 
     /**
-     *  保存方法日志
+     * 保存方法日志
+     *
      * @param point ProceedingJoinPoint 切入点
      * @param time  long 执行时间
      */
@@ -81,40 +82,39 @@ public class LogAspect {
         Method method = signature.getMethod();
         AopLog logAnnotation = method.getAnnotation(AopLog.class);
 
-        Log log=new Log();
+        Log log = new Log();
 
         log.setValue(logAnnotation.value());
 
-        logger.info("方法注释:"+logAnnotation.value());
+        logger.info("方法注释:" + logAnnotation.value());
         String className = point.getTarget().getClass().getName();
         String methodName = signature.getName();
 
-        log.setMethodName(className+"."+methodName);
+        log.setMethodName(className + "." + methodName);
         log.setSpendTime(time);
-        logger.info("执行方法:"+className+"."+methodName);
-        logger.info("执行时间:"+time+"ms");
+        logger.info("执行方法:" + className + "." + methodName);
+        logger.info("执行时间:" + time + "ms");
         Object[] args = point.getArgs();
         LocalVariableTableParameterNameDiscoverer u = new LocalVariableTableParameterNameDiscoverer();
         String[] paramNames = u.getParameterNames(method);
 
 
-
-        String  temp=Arrays.toString(args);
-        temp=temp.replace("[","");
-        temp=temp.replace("]","");
-        String[] value=temp.split(",");
-        Map<String,String> save=new HashMap<>();
-        for (int i = 0; i < Objects.requireNonNull(paramNames).length; i++){
-            save.put(paramNames[0],value[i]);
+        String temp = Arrays.toString(args);
+        temp = temp.replace("[", "");
+        temp = temp.replace("]", "");
+        String[] value = temp.split(",");
+        Map<String, String> save = new HashMap<>();
+        for (int i = 0; i < Objects.requireNonNull(paramNames).length; i++) {
+            save.put(paramNames[0], value[i]);
         }
         log.setParamValue(JSON.toJSONString(save));
 
-        logger.info("方法参数值:"+JSON.toJSONString(save));
+        logger.info("方法参数值:" + JSON.toJSONString(save));
 
-        if (logAnnotation.type()==0){
+        if (logAnnotation.type() == 0) {
             HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
 
-            logger.info("访问IP地址:"+tool.getIpAddr(request));
+            logger.info("访问IP地址:" + tool.getIpAddr(request));
             log.setIp(tool.getIpAddr(request));
         }
 
