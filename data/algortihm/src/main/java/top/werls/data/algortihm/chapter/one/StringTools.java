@@ -1,8 +1,6 @@
 package top.werls.data.algortihm.chapter.one;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author : Lee JiaWei
@@ -68,16 +66,44 @@ public class StringTools {
     public static String toPostfix(String string) {
         char[] temp = string.toCharArray();
         Stack<String> ops = new Stack<>();
-        Stack<Integer> value = new Stack<>();
+        Queue<String> value = new ArrayDeque<>();
         for (char c : temp) {
             if (c >= '0' && c <= '9') {
-                value.push((int) c);
+                value.add(String.valueOf(c));
             } else if (isOperate(c)) {
-                
+                System.out.println(c);
+//                是否为运算符
+                if (!ops.isEmpty()) {
+                    if (priority(c) > priority(ops.peek().charAt(0))) {
+                        ops.push(String.valueOf(c));
+                    } else {
+//                    低优先级 出栈
+                        System.out.println(ops.peek());
+                        value.add(ops.pop());
+                    }
+                }else {
+                    ops.push(String.valueOf(c));
+                }
+            } else if (c == '(') {
                 ops.push(String.valueOf(c));
+            } else if (c == ')') {
+                while (ops.peek().charAt(0) != '(') {
+                    System.out.println(ops.peek());
+                    value.add(ops.pop());
+                }
+//                出 '('
+                ops.pop();
             }
         }
-
+        while (!ops.isEmpty()) {
+            System.out.println(ops.peek());
+            value.add(ops.pop());
+        }
+        StringBuilder res = new StringBuilder();
+        while (!value.isEmpty()) {
+            res.append(value.poll());
+        }
+        return res.toString();
     }
 
     private static boolean isOperate(char c) {
@@ -87,5 +113,14 @@ public class StringTools {
         symbol.put('/', 2);
         symbol.put('*', 2);
         return symbol.containsKey(c);
+    }
+
+    private static int priority(char c) {
+        Map<Character, Integer> symbol = new HashMap<>(4);
+        symbol.put('+', 1);
+        symbol.put('-', 1);
+        symbol.put('/', 2);
+        symbol.put('*', 2);
+        return symbol.get(c);
     }
 }
