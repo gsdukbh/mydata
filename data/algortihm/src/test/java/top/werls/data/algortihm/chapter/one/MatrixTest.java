@@ -25,7 +25,7 @@ class MatrixTest {
     void dot() {
 //        double[] x = {1, 3, -5}, y = {4, -2, -1};
 //        System.out.println(Matrix.dot(x, y));
-        String v="1+2)*3-4)*5-6)))";
+        String v = "1+2)*3-4)*5-6)))";
         System.out.println(StringTools.infixRe(v));
     }
 

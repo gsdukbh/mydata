@@ -35,7 +35,7 @@ public class ChapterOne {
         long start = System.currentTimeMillis();
         if (N > 92) {
             res.put("res", Text.fib(N));
-        }else {
+        } else {
             res.put("res", Text.fibLoop(N));
         }
         long end = System.currentTimeMillis();

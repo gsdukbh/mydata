@@ -18,6 +18,7 @@ public class LogService {
 
     /**
      * 保存Log 对象
+     *
      * @param log log 对象
      */
     public void save(Log log) {

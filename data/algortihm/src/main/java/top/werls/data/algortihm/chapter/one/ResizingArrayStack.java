@@ -44,6 +44,7 @@ public class ResizingArrayStack<T> implements Iterable<T> {
         }
         return t;
     }
+
     /**
      * Returns an iterator over elements of type {@code T}.
      *
@@ -55,7 +56,7 @@ public class ResizingArrayStack<T> implements Iterable<T> {
         return null;
     }
 
-    private class ListIterator implements  Iterable<T>{
+    private class ListIterator implements Iterable<T> {
 
         /**
          * Returns an iterator over elements of type {@code T}.

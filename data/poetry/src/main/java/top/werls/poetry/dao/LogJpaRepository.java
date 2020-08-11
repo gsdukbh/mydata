@@ -11,6 +11,6 @@ import top.werls.poetry.entity.Log;
  * @date Date : 2020/7/20 14:23
  */
 @Repository
-public interface LogJpaRepository extends JpaRepository<Log,Integer> {
+public interface LogJpaRepository extends JpaRepository<Log, Integer> {
 
 }

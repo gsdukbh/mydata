@@ -9,9 +9,10 @@ import java.lang.annotation.Target;
  * @author: Lee JiaWei
  * @date: 2020/7/17 14:16
  */
-@Target({ElementType.METHOD,ElementType.TYPE})
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AopLog {
-       String value() default "";
-       int type() default 0;
+    String value() default "";
+
+    int type() default 0;
 }

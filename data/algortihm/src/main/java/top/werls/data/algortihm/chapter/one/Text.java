@@ -45,7 +45,7 @@ public class Text {
             return list.get(0);
         }
         if (list.size() <= N) {
-            list.add(fib(N - 1,list).add(fib(N - 2,list)));
+            list.add(fib(N - 1, list).add(fib(N - 2, list)));
         }
         return list.get(N);
     }

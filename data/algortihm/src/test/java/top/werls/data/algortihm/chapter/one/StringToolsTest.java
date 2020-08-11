@@ -36,7 +36,7 @@ class StringToolsTest {
 
     @Test
     void toPostfix() {
-        String  string="3+4*2";
+        String string = "3+4*2";
         System.out.println(StringTools.toPostfix(string));
     }
 }

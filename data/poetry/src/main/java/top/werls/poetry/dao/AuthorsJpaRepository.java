@@ -11,6 +11,6 @@ import top.werls.poetry.entity.Authors;
  * @Date : 2020/7/21 16:44
  */
 @Repository
-public interface AuthorsJpaRepository extends JpaRepository<Authors,Integer> {
+public interface AuthorsJpaRepository extends JpaRepository<Authors, Integer> {
 
 }

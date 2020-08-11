@@ -16,37 +16,37 @@ class RationalTest {
 
     @Test
     void plus() {
-        Rational rational=new Rational(1,2);
+        Rational rational = new Rational(1, 2);
         System.out.println(rational.plus(rational).toString());
     }
 
     @Test
     void minus() {
-        Rational rational=new Rational(1,2);
+        Rational rational = new Rational(1, 2);
         System.out.println(rational.minus(rational).toString());
     }
 
     @Test
     void times() {
-        Rational rational=new Rational(1,2);
+        Rational rational = new Rational(1, 2);
         System.out.println(rational.times(rational).toString());
     }
 
     @Test
     void testEquals() {
-        Rational rational=new Rational(1,2);
+        Rational rational = new Rational(1, 2);
         System.out.println(rational.equals(rational));
     }
 
     @Test
     void testToString() {
-        Rational rational=new Rational(1,2);
+        Rational rational = new Rational(1, 2);
         System.out.println(rational.toString());
     }
 
     @Test
     void divides() {
-        Rational rational=new Rational(1,2);
+        Rational rational = new Rational(1, 2);
         System.out.println(rational.divides(rational).toString());
     }
 }

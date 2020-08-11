@@ -23,7 +23,7 @@ import java.util.Date;
 public class Log implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long logId;
     private String methodName;
     private String paramValue;

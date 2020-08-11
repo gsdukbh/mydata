@@ -15,8 +15,8 @@ import java.io.Serializable;
 public class TangSongShi implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private  long Tid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long Tid;
     private String author;
     private String type;
     private String title;

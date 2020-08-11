@@ -81,7 +81,7 @@ public class StringTools {
                         System.out.println(ops.peek());
                         value.add(ops.pop());
                     }
-                }else {
+                } else {
                     ops.push(String.valueOf(c));
                 }
             } else if (c == '(') {
